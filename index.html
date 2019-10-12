@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/35E8B409-794B-B54D-9B74-ED05FC6A0AA2/main.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		
+
+
+	</script>
+</head>
+<body>
+
+<input  id="search">
+<button onclick="getrec(document.getElementById('search').value)">Search</button>
+<div id="output"></div>
+<div id="nxtoutput"></div>
+<a href="" id="sourceLink"></a>
+
+
+
+
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/35E8B409-794B-B54D-9B74-ED05FC6A0AA2/main.js" charset="UTF-8"></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+<div id="output"></div>
+<a href="" id="sourceLink"></a>
+<script>
+
+function getrec(q){
+$.ajax({
+
+url:"https://api.spoonacular.com/food/products/search?query="+q+"&number=2&apiKey=4396e3b495d94d929a0e3619b4fb4191",
+success: function(res) {
+
+	let id=res.products[0].id;
+	document.getElementById("output").innerHTML="<h1>"+id+"</h1><h2>---ID</h2>"
+			
+
+	 $.ajax({
+
+		url:"https://api.spoonacular.com/food/products/"+id+"?apiKey=4396e3b495d94d929a0e3619b4fb4191",
+		success:function(data){
+			document.getElementById("nxtoutput").innerHTML="<h1>XCalories</h1><h2>"+data.nutrition.calories+"</h2><br>Ready in  minutes"
+			
+		
+		},
+		error: function () {
+        alert('Error!');
+    }
+		
+	});
+
+
+getsource(res.products[0].id)
+}
+});
+
+}
+
+</script>
+</body>
+
+
+</html>
